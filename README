@@ -1,0 +1,45 @@
+YAGB
+Yet Another GuestBook
+
+FEATURES
+
+* CAPTCHA
+  http://en.wikipedia.org/wiki/CAPTCHA
+
+DEPENDENCIES
+
+perl >= 5.10
+Config::Tiny
+DBI
+DBD::SQLite / DBD::mysql / maybe another
+GD::SecurityImage (optional, for CAPTCHA)
+HTML::Template
+
+INSTALL
+
+Just copy to need dir
+
+SETUP
+
+* Create database
+  for SQLite like:
+    $ sqlite3 data/yagb.sqlite < conf/yagb.schema.sql
+  for MySQL like:
+    $ mysqladmin create yagb
+    $ mysql -e "GRANT ALL PRIVILEGES ON yagb.* TO yagb@localhost IDENTIFIED BY 'password'"
+    $ mysql -e "FLUSH PRIVILEGES"
+    $ mysql -uyagb -ppassword yagb < conf/yagb.scheme.sql
+
+* Copy conf/yagb.conf.exmaple to conf/yagb.conf
+  and edit it
+
+* Setup apache
+  Copy conf/yagb.httpd.conf.example to /path/to/apache/conf/yagb.httpd.conf
+   (or paste to httpd.conf) and edit it
+
+* If you enable CAPTCHA then make sure set write permission for webserver user at htdocs/captcha,
+  like:
+    $ chgrp www htdocs/captcha && chmod 775 htdocs/captcha
+  or
+    $ chown www htdocs/captcha && chmod 755 htdocs/captcha
+
