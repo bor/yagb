@@ -1,0 +1,29 @@
+<!-- TMPL_INCLUDE NAME="header.html" -->
+
+<h4>Welcome to GuestBook</h4>
+<br/>
+<a href="?act=post_form">Post your message here</a>
+<br/><br/>
+<!-- TMPL_IF NAME="post_ok" -->
+<div class="info">
+    Your message posted.
+</div>
+<!-- /TMPL_IF -->
+<br/><br/>
+
+<table>
+    <tr><th colspan="2">Messages</th></tr>
+    <!-- TMPL_LOOP NAME="MESSAGES" -->
+    <tr>
+        <td><!-- TMPL_VAR NAME="name" -->, <a href="<TMPL_VAR NAME=homepage>">HomePage</a></td>
+    </tr>
+    <tr>
+        <td><!-- TMPL_VAR NAME="msg" --></td>
+    </tr>
+    <!-- /TMPL_LOOP -->
+    <!-- TMPL_UNLESS NAME="MESSAGES" -->
+    <tr><td colspan="2">No messages yet</td></tr>
+    <!-- /TMPL_UNLESS -->
+</table>
+
+<!-- TMPL_INCLUDE NAME="footer.html" -->

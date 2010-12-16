@@ -1,0 +1,48 @@
+# yagb conf example
+
+#
+# path settings
+#
+# main dir, where yagb installed
+# default try detect it from script path
+#main_dir        =
+# htdocs dir (with captcha,css,js subdirs)
+# start with '/' for full path, or without for relative path
+# default: htdocs (= $main_dir/htdocs)
+#htdocs          =
+#
+# other setting
+#
+# enable captcha, 0/1, default: 1
+captcha_enable  = 1
+# posts per page, int, default: 10
+posts_per_page  = 10
+
+#
+# db settings
+[db]
+# SQLite/mysql/Pg
+driver       = SQLite
+# for MySQL/Pg only
+host         = localhost
+# for SQLite only
+dir          = data
+# .sqlite at end only for SQLite
+# for MySQL/Pg remove it
+name         = yagb.sqlite
+user         = yagb
+password     =
+
+
+#
+# captcha settings
+[captcha]
+# 0..9, default: 5
+strong  = 5
+# number of chars on captcha, default 4
+nchars  = 4
+# width, default: 80
+#width   = 80
+# height, default: 30
+#height  = 30
+

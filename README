@@ -12,7 +12,8 @@ perl >= 5.10
 Config::Tiny
 DBI
 DBD::SQLite / DBD::mysql / maybe another
-GD::SecurityImage (optional, for CAPTCHA)
+GD::SecurityImage   (optional, for CAPTCHA)
+CGI::Session        (optional, for CAPTCHA)
 HTML::Template
 
 INSTALL
@@ -37,9 +38,12 @@ SETUP
   Copy conf/yagb.httpd.conf.example to /path/to/apache/conf/yagb.httpd.conf
    (or paste to httpd.conf) and edit it
 
-* If you enable CAPTCHA then make sure set write permission for webserver user at htdocs/captcha,
-  like:
-    $ chgrp www htdocs/captcha && chmod 775 htdocs/captcha
+* Permissions
+  If you use SQLite DB you make sure set write permission for webserver user at 'data/yagb.sqlite' and data dir.
+  You set permissions like:
+    $ chgrp -R www data && chmod 775 data && chmod 664 data/yagb.sqlite
   or
-    $ chown www htdocs/captcha && chmod 755 htdocs/captcha
+    $ chown -R www data && chmod 755 data && chmod 644 data/yagb.sqlite
+  or
+    $ chmod -R 777 data && chmod 666 data/yagb.sqlite
 

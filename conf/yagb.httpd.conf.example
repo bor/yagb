@@ -1,0 +1,16 @@
+# vim: set ft=apache :
+
+<VirtualHost *:80>
+    ServerName yagb.example.com
+    DocumentRoot /var/www/yagb/htdocs
+    ScriptAlias /cgi-bin/ /var/www/yagb/cgi-bin/
+    ErrorLog /var/log/httpd/yagb.error.log
+    CustomLog /var/log/httpd/yagb.access.log combined
+    # setup for pure CGI env
+    SetEnv YAGB_CONF /var/www/yagb/conf/yagb.conf
+    # setup for mod_perl
+    #PerlSetVar YAGB_CONF /var/www/yagb/conf/yagb.conf
+    <Directory "/var/www/yagb/htdocs">
+        Allow from All
+    </Directory>
+</VirtualHost>

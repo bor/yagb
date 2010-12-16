@@ -1,0 +1,45 @@
+<!-- TMPL_INCLUDE NAME="header.html" -->
+
+<h4>Post new message</h4>
+
+<!-- TMPL_IF NAME="error" -->
+<div class="error">
+    <!-- TMPL_VAR NAME="error" -->
+    <br/><br/>
+</div>
+<!-- /TMPL_IF -->
+
+<form name="post_form" action="?" class="post_form" method="get">
+
+    Your Name: <input name="name" value="<TMPL_VAR NAME=name>" />*
+    <!-- TMPL_IF NAME="error_name" --><span class="error">error here</span><!-- /TMPL_IF -->
+    <br/>
+    Your Email: <input name="email" value="<TMPL_VAR NAME=email>" />*
+    <!-- TMPL_IF NAME="error_email" --><span class="error">error here</span><!-- /TMPL_IF -->
+    <br/>
+    HomePage: <input name="url" value="<TMPL_VAR NAME=url>" />
+    <!-- TMPL_IF NAME="error_url" --><span class="error">error here</span><!-- /TMPL_IF -->
+    <br/>
+    Message: * **<br/>
+    <textarea name="msg" cols="35" rows="5"><!-- TMPL_VAR NAME="msg" --></textarea>
+    <!-- TMPL_IF NAME="error_msg" --><span class="error">error here</span><!-- /TMPL_IF -->
+    <br/><br/>
+<!-- TMPL_IF NAME="captcha_enable" -->
+    <img src="?act=captcha" alt="captcha" /><br />
+    CAPTCHA: <input name="captcha" size="5" value="" />*
+    <br/><br/>
+<!-- /TMPL_IF -->
+    <input type="hidden" name="act" value="post_do" />
+    <input type="submit" value="Post message" />
+    <input type="reset" value="Reset" />
+
+</form>
+
+<div>
+    <br/>
+    * - required fields
+    <br/>
+    ** - HTML tags not allowed
+</div>
+
+<!-- TMPL_INCLUDE NAME="footer.html" -->
