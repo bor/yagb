@@ -4,6 +4,7 @@
 <br/>
 <a href="?act=post_form">Post your message here</a>
 <br/><br/>
+
 <!-- TMPL_IF NAME="post_ok" -->
 <div class="info">
     Your message posted.
@@ -11,14 +12,29 @@
 <!-- /TMPL_IF -->
 <br/><br/>
 
+<h3>Messages</h3>
+Sort by: &nbsp;
+Name <a href="?order_by=name;order=desc">/\</a> <a href="?order_by=name;order=asc">\/</a> &nbsp;&nbsp;
+Email <a href="?order_by=email;order=desc">/\</a> <a href="?order_by=email;order=asc">\/</a> &nbsp;&nbsp;
+Post Time <a href="?order_by=post_time;order=desc">/\</a> <a href="?order_by=post_time;order=asc">\/</a>
 <table>
-    <tr><th colspan="2">Messages</th></tr>
     <!-- TMPL_LOOP NAME="MESSAGES" -->
     <tr>
-        <td><!-- TMPL_VAR NAME="name" -->, <a href="<TMPL_VAR NAME=homepage>">HomePage</a></td>
+        <th align="left">
+            <span class="name">
+        <!-- TMPL_IF NAME="homepage" -->
+            <a href="<TMPL_VAR NAME=homepage>"><!-- TMPL_VAR NAME="name" --></a>,
+        <!-- TMPL_ELSE -->
+            <!-- TMPL_VAR NAME="name" -->,
+        <!-- /TMPL_IF -->
+            </span>
+            <!-- TMPL_VAR NAME="email" -->
+            &nbsp;&nbsp;
+            <span style="float: right;">Post Time: <!-- TMPL_VAR NAME="post_time" --></span>
+        </th>
     </tr>
     <tr>
-        <td><!-- TMPL_VAR NAME="msg" --></td>
+        <td><div class="message"><!-- TMPL_VAR NAME="msg" --></div></td>
     </tr>
     <!-- /TMPL_LOOP -->
     <!-- TMPL_UNLESS NAME="MESSAGES" -->

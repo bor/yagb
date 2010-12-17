@@ -45,6 +45,7 @@ table {
     margin-bottom: 2pt;
     margin-left: auto;
     margin-right: auto;
+    min-width: 50%;
     padding: 2pt 8pt 2pt 8pt;
 }
 
@@ -63,14 +64,6 @@ textarea {
     border: 1pt solid #aaa;
     margin: 2pt;
     padding: 1pt;
-}
-
-.error {
-    color: red;
-}
-
-.info {
-    color: #777;
 }
 
 #main {
@@ -117,6 +110,25 @@ html>body #main {
     position: absolute;
     text-align: center;
     width: 100%;
+}
+
+.error {
+    color: red;
+}
+
+.info {
+    color: #777;
+}
+
+.message {
+    font-size: 0.9em;
+    margin-left: 2pt;
+    padding: 2pt;
+    text-align: left;
+}
+
+.name {
+    font-size: 1.2em;
 }
 
 .post_form {

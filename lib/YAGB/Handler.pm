@@ -73,9 +73,15 @@ sub index {
     my $self = shift;
     my $tmpl = $self->load_tmpl('index.html');
     $tmpl->param('post_ok',$self->param('post_ok'));
+    # check input
+    my ($order_by) = grep { $_ eq $self->q->param('order_by') } qw( name email post_time ) if $self->q->param('order_by');
+    my ($order) = grep { $_ eq $self->q->param('order') } qw( desc asc ) if $self->q->param('order');
+    # defaults
+    $order_by ||= 'post_time';
+    $order ||= 'desc';
     $tmpl->param( MESSAGES =>
-                    $self->dbh->selectall_arrayref('SELECT name, homepage, message AS msg
-                                                    FROM yagb_messages ORDER BY id',
+                    $self->dbh->selectall_arrayref("SELECT name, email, homepage, message AS msg, post_time
+                                                    FROM yagb_messages ORDER BY $order_by $order",
                                                 { Slice => {} } )
     );
     return $tmpl;
