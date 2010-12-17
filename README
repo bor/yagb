@@ -29,7 +29,7 @@ SETUP
     $ mysqladmin create yagb
     $ mysql -e "GRANT ALL PRIVILEGES ON yagb.* TO yagb@localhost IDENTIFIED BY 'password'"
     $ mysql -e "FLUSH PRIVILEGES"
-    $ mysql -uyagb -ppassword yagb < conf/yagb.scheme.sql
+    $ mysql -uyagb -ppassword yagb < conf/yagb.schema.sql
     $ mysql -uyagb -ppassword yagb -e "ALTER TABLE yagb_messages MODIFY id SERIAL"
 
 * Copy conf/yagb.conf.exmaple to conf/yagb.conf

@@ -42,4 +42,8 @@ Post Time <a href="?order_by=post_time;order=desc">/\</a> <a href="?order_by=pos
     <!-- /TMPL_UNLESS -->
 </table>
 
+<!-- TMPL_LOOP NAME="PAGES" -->
+<a href="?order_by=<TMPL_VAR NAME=order_by>;order=<TMPL_VAR NAME=order>;page=<TMPL_VAR NAME=page>">Page <!-- TMPL_VAR NAME="page" --></a> &nbsp;
+<!-- /TMPL_LOOP -->
+
 <!-- TMPL_INCLUDE NAME="footer.html" -->
