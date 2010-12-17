@@ -25,7 +25,7 @@ posts_per_page  = 10
 driver       = SQLite
 # for MySQL/Pg only
 host         = localhost
-# for SQLite only
+# for SQLite only, default $main_dir/data
 dir          = data
 # .sqlite at end only for SQLite
 # for MySQL/Pg remove it

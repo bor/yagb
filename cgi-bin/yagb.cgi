@@ -36,7 +36,7 @@ sub main {
         }
     }
     unless ( $yagb->param('header_sent') ) {
-        print $yagb->q->header;
+        print $yagb->q->header(-expires => 'now');
         print $tmpl->output;
     }
 }

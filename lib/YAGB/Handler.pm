@@ -73,7 +73,7 @@ sub index {
     my $self = shift;
     my $tmpl = $self->load_tmpl('index.html');
     $tmpl->param('post_ok',$self->param('post_ok'));
-    # check input
+    # check order_by & order input
     my ($order_by) = grep { $_ eq $self->q->param('order_by') } qw( name email post_time ) if $self->q->param('order_by');
     my ($order) = grep { $_ eq $self->q->param('order') } qw( desc asc ) if $self->q->param('order');
     # defaults
@@ -105,8 +105,10 @@ sub post_do {
         }
         unless ( $session->param('captcha') eq $self->q->param('captcha') ) {
             $self->param('error','Bad captcha');
+            $session->clear('captcha');
             return $self->post_form();
         }
+        $session->clear('captcha');
     }
     $self->param('post_ok',1);
     # check input
