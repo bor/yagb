@@ -9,7 +9,7 @@
 </div>
 <!-- /TMPL_IF -->
 
-<form name="post_form" action="?" class="post_form" method="post">
+<form name="post_form" action="?" class="post_form" method="post" onsubmit="return check_form(this,new Array('name','email','msg','captcha'));">
 
     Your Name: <input name="name" value="<TMPL_VAR NAME=name>" />*
     <!-- TMPL_IF NAME="error_name" --><span class="error">error here</span><!-- /TMPL_IF -->
