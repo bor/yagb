@@ -28,7 +28,7 @@ use CGI;
 use Config::Tiny;
 use Cwd;
 use HTML::Template;
-use YAGB::DB;
+use YAGB::DB qw( db_connect dbh );
 
 our $ERROR;
 
@@ -51,8 +51,13 @@ sub new {
     $self->conf_load();
     # set debug level
     #$self->debug(delete $self->{debug});
-    # set dbh
-    $self->dbh($params{dbh}) if $params{dbh} and ref($params{dbh});
+    # set dbh or connect to DB
+    if ( $params{dbh} and ref($params{dbh}) ) {
+        $self->dbh($params{dbh});
+    }
+    else {
+        $self->db_connect($self->conf('db'));
+    }
     return $self->error('Cant connect to DB!') unless $self->dbh;
     return $self;
 }
@@ -110,20 +115,6 @@ sub conf_load {
     }
     return 1;
 }
-
-=head2 dbh([$dbh])
-
-Get/Set value of dbh, "lazy" connect
-
-=cut
-
-sub dbh {
-    my ($self,$dbh) = @_;
-    if ( $dbh ) { $self->{_dbh} = $dbh; }
-    unless ( $self->{_dbh} ) { $self->{_dbh} = YAGB::DB->new($self->conf('db')); }
-    return $self->{_dbh};
-}
-
 
 =head2 error
 
