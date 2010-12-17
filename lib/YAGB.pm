@@ -98,7 +98,7 @@ sub conf_load {
     $self->{_conf} = Config::Tiny->read($conf_file)
         or die "Can't read conf file $conf_file: ".Config::Tiny->errstr."\n";
     # try detect main dir if not set
-    unless ( $self->{_conf}{main_dir} ) {
+    unless ( $self->conf('main_dir') ) {
         $self->{_conf}{main_dir} = cwd();
         $self->{_conf}{main_dir} =~ s/\/(cgi-)?bin\/?$//;
         unless ( $self->{_conf}{main_dir} and -d $self->{_conf}{main_dir} ) {
@@ -106,10 +106,10 @@ sub conf_load {
             $self->{_conf}{main_dir} =~ s/\/htdocs\/?$//;
         }
     }
-    die "Cant determine main dir!" unless $self->{_conf}{main_dir} and -d $self->{_conf}{main_dir};
+    die "Cant determine main dir!" unless $self->conf('main_dir') and -d $self->conf('main_dir');
     # check db dir
     if ( $self->{_conf}{db}{dir} ) {
-        $self->{_conf}{db}{dir} = $self->{_conf}{main_dir}.'/'.$self->{_conf}{db}{dir}
+        $self->{_conf}{db}{dir} = $self->conf('main_dir').'/'.$self->{_conf}{db}{dir}
             if $self->{_conf}{db}{dir} and $self->{_conf}{db}{dir} !~ /^\//;
         $self->{_conf}{db}{dir} .= '/' if $self->{_conf}{db}{dir} and $self->{_conf}{db}{dir} !~ /\/$/;
     }
