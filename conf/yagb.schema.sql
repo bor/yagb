@@ -5,7 +5,7 @@
 -- CREATE DATABASE IF NOT EXISTS yagb;
 
 CREATE TABLE yagb_messages (
-    id SERIAL PRIMARY KEY,
+    id INTEGER NOT NULL PRIMARY KEY,
     name VARCHAR(64) NOT NULL,
     email VARCHAR(255) NOT NULL,
     homepage VARCHAR(255),
