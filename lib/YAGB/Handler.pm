@@ -25,6 +25,7 @@ use warnings;
 
 our $VERSION = '0.01';
 
+use HTML::Entities ();
 use POSIX qw( ceil );
 use YAGB::CAPTCHA;
 
@@ -138,9 +139,11 @@ sub post_do {
         $self->param('post_ok',0);
     }
     return $self->post_form() unless $self->param('post_ok');
+    # encode chars '<>&"' for prevent XSS atack
+    my $msg = HTML::Entities::encode($self->q->param('msg'),'<>&"');
     # insert meassage into DB
     $self->dbh->do('INSERT INTO yagb_messages (name,email,homepage,message,post_time,ip,useragent) VALUES (?,?,?,?,?,?,?)',
-            undef, $self->q->param('name'), $self->q->param('email'), $self->q->param('url'), $self->q->param('msg'),
+            undef, $self->q->param('name'), $self->q->param('email'), $self->q->param('url'), $msg,
             time(), $self->q->remote_addr, $self->q->user_agent );
     return $self->index();
 }
