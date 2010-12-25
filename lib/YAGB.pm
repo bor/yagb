@@ -163,7 +163,10 @@ CGI query object, "lazy" load
 
 sub q {
     my $self = shift;
-    $self->{_q} = CGI->new() unless $self->{_q};
+    unless ( $self->{_q} ) {
+        $self->{_q} = CGI->new();
+        $self->{_q}->charset('utf-8');
+    }
     return $self->{_q};
 }
 
